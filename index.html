@@ -61,34 +61,46 @@
     <div class="row">
 
 
-        <div class="col-xs-12 col-md-7">
+        <div id="leftNavParent" class="col-md-7">
 
 
-            <div id="choroplethTopBar" class="btn-group btn-group-justified" data-toggle="buttons">
-              <label id="totalPopulationByCounty" class="btn btn-primary active">
-                <input type="radio" name="options" id="totalPopulationByCountyInput" autocomplete="off" checked> Total Population
-              </label>
-              <label id="medianAge" class="btn btn-primary">
-                <input type="radio" name="options" id="medianAgeInput" autocomplete="off"> Median Age
-              </label>
-              <label id="medianHouseholdIncome" class="btn btn-primary">
-                <input type="radio" name="options" id="medianHouseholdIncomeInput" autocomplete="off"> Median Household Income
-              </label>
-              <label id="perCapitaIncome" class="btn btn-primary">
-                <input type="radio" name="options" id="perCapitaIncomeInput" autocomplete="off"> Per Capita Income
-              </label>
-            </div>
+            <div id="leftNav" data-spy="affix" data-offset-top="20">
 
+                <div id="choroplethTopBar" class="btn-group btn-group-justified" data-toggle="buttons">
+                  <label id="totalPopulationByCounty" class="btn btn-default active">
+                    <input type="radio" name="options" id="totalPopulationByCountyInput" autocomplete="off" checked> Total Population
+                  </label>
+                  <label id="medianAge" class="btn btn-default">
+                    <input type="radio" name="options" id="medianAgeInput" autocomplete="off"> Median Age
+                  </label>
+                  <label id="medianHouseholdIncome" class="btn btn-default">
+                    <input type="radio" name="options" id="medianHouseholdIncomeInput" autocomplete="off"> Median Household Income
+                  </label>
+                  <label id="perCapitaIncome" class="btn btn-default">
+                    <input type="radio" name="options" id="perCapitaIncomeInput" autocomplete="off"> Per Capita Income
+                  </label>
+                </div>
 
+      
 
             <!-- legend -->
-            <div id="legend"> </div>
+
+             
+
+                     <div id="legend"> </div>
+
+            
 
 
-            <svg class="Oranges" id="map" width="700" height="550"></svg>
+                <svg class="Oranges" id="map" width="700" height="550"></svg>
+
+
+
+            </div> <!-- ./affix -->
+
 
         </div>
-        <!-- /.col-md-8 -->
+        <!-- /.col-md-7 -->
 
         <div id="panelSideBar" class="col-xs-12 col-md-5">
 

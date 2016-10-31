@@ -16,6 +16,11 @@ body {
   stroke: #000;
 }
 
+#leftNav.affix {
+    top: 40px;
+    position: fixed!important;
+}
+
 /*orange only colors 
 
 .b0-9 { fill:#fff5eb; }

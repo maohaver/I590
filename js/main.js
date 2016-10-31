@@ -580,7 +580,7 @@ function makeTransportationChart(error, data){
     var width = 450;
     var height = 200;
     var radius = Math.min(width, height) / 2.5;
-    var donutWidth = 75;
+    var donutWidth = 50;
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
     var newData = createTransportationObject(data);
     var legendRectSize = 16;
@@ -635,7 +635,7 @@ function makeTransportationChart(error, data){
         .attr('transform', function(d, i) {
             var height = legendRectSize + legendSpacing;
             var offset =  height * color.domain().length / 2;
-            var horz = 8 * legendRectSize;
+            var horz = 6 * legendRectSize;
             var vert = i * height - offset;
             return 'translate(' + horz + ',' + vert + ')';
         });
@@ -893,7 +893,7 @@ function getRaceChart(error, data){
     var width = 450;
     var height = 200;
     var radius = Math.min(width, height) / 2.5;
-    var donutWidth = 75;
+    var donutWidth = 50;
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
     var newData = getRaceObject(data);
     var legendRectSize = 16;
@@ -947,7 +947,7 @@ function getRaceChart(error, data){
         .attr('transform', function(d, i) {
             var height = legendRectSize + legendSpacing;
             var offset =  height * color.domain().length / 2;
-            var horz = 8 * legendRectSize;
+            var horz = 6 * legendRectSize;
             var vert = i * height - offset;
             return 'translate(' + horz + ',' + vert + ')';
         });
@@ -1051,7 +1051,7 @@ function livingArrangmentChart(error, data){
     var width = 450;
     var height = 200;
     var radius = Math.min(width, height) / 2.5;
-    var donutWidth = 75;
+    var donutWidth = 50;
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
     var newData = livingArrangmentObject(data);
     var legendRectSize = 16;
@@ -1105,7 +1105,7 @@ function livingArrangmentChart(error, data){
         .attr('transform', function(d, i) {
             var height = legendRectSize + legendSpacing;
             var offset =  height * color.domain().length / 2;
-            var horz = 8 * legendRectSize;
+            var horz = 6 * legendRectSize;
             var vert = i * height - offset;
             return 'translate(' + horz + ',' + vert + ')';
         });
@@ -1206,7 +1206,7 @@ function birthByNationalityChart(error, data){
     var width = 450;
     var height = 200;
     var radius = Math.min(width, height) / 2.5;
-    var donutWidth = 75;
+    var donutWidth = 50;
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
     var newData = birthByNationalityObject(data);
     var legendRectSize = 16;
@@ -1260,7 +1260,7 @@ function birthByNationalityChart(error, data){
         .attr('transform', function(d, i) {
             var height = legendRectSize + legendSpacing;
             var offset =  height * color.domain().length / 2;
-            var horz = 8 * legendRectSize;
+            var horz = 6 * legendRectSize;
             var vert = i * height - offset;
             return 'translate(' + horz + ',' + vert + ')';
         });
@@ -1355,7 +1355,7 @@ function populationByPovertyChart(error, data){
     var width = 450;
     var height = 200;
     var radius = Math.min(width, height) / 2.5;
-    var donutWidth = 75;
+    var donutWidth = 50;
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
     var newData = populationByPovertyObject(data);
     var legendRectSize = 16;
@@ -1409,7 +1409,7 @@ function populationByPovertyChart(error, data){
         .attr('transform', function(d, i) {
             var height = legendRectSize + legendSpacing;
             var offset =  height * color.domain().length / 2;
-            var horz = 8 * legendRectSize;
+            var horz = 6 * legendRectSize;
             var vert = i * height - offset;
             return 'translate(' + horz + ',' + vert + ')';
         });
@@ -1523,7 +1523,7 @@ function placeBirthPovertyChart(error, data){
     var width = 450;
     var height = 200;
     var radius = Math.min(width, height) / 2.5;
-    var donutWidth = 75;
+    var donutWidth = 50;
     var color = d3.scaleOrdinal(d3.schemeCategory20c);
     var newData = placeBirthPovertyObject(data);
     var legendRectSize = 16;
@@ -1577,7 +1577,7 @@ function placeBirthPovertyChart(error, data){
         .attr('transform', function(d, i) {
             var height = legendRectSize + legendSpacing;
             var offset =  height * color.domain().length / 2;
-            var horz = 8 * legendRectSize;
+            var horz = 6 * legendRectSize;
             var vert = i * height - offset;
             return 'translate(' + horz + ',' + vert + ')';
         });
@@ -1658,4 +1658,13 @@ function placeBirthPovertyObject(data){
     return objContainer;
 }
 
+$(document).ready(function () {
+    $(window).resize(function () {
+        $('#leftNav').width($('#leftNavParent').width());
+    });
+});
+
+$(document).ready(function () {
+    $('#leftNav').width($('#leftNavParent').width());
+});
 
