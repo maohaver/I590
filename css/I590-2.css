@@ -11,6 +11,12 @@ body {
   stroke: gray;
 }
 
+.counties .active {
+  fill: orange;
+  stroke: #000;
+  stroke-width: 3;
+}
+
 .states {
   fill: none;
   stroke: #000;
@@ -19,6 +25,11 @@ body {
 #leftNav.affix {
     top: 40px;
     position: fixed!important;
+}
+
+.background {
+  fill: none;
+  pointer-events: all;
 }
 
 /*orange only colors 
@@ -100,7 +111,7 @@ rect.disabled {                              /* NEW */
     padding: 10px;
     position: auto;
     text-align: center;
-    
+
     width: 150px;
     z-index: 10;
     opacity: 1;

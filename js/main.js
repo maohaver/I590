@@ -30,11 +30,19 @@ function createPopulationByCounty(){
         width = +svg.attr("width"),
         height = +svg.attr("height");
 
+    svg.append("rect")
+        .attr("class", "background")
+        .attr("width", width)
+        .attr("height", height)
+        .on("click", clicked);
+
     var rateById = d3.map();
+
+    var centered;
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2]);
+        .translate([width / 2, height / 2.5]);
 
     var path = d3.geoPath()
         .projection(projection);
@@ -132,6 +140,7 @@ function createPopulationByCounty(){
             .enter().append("path")
             .attr("class", function(d) { return quantize(rateById.get(d.id)); })
             .attr("d", path)
+            .on("click", clicked)
             .on('mousedown.log', function (d) {
                 getTransportationData(d.id);
                 getEducationalAttainment(d.id);
@@ -151,6 +160,32 @@ function createPopulationByCounty(){
 
 
 }
+
+function clicked(d) {
+  var x, y, k;
+
+  if (d && centered !== d) {
+    var centroid = path.centroid(d);
+    x = centroid[0];
+    y = centroid[1];
+    k = 4;
+    centered = d;
+  } else {
+    x = width / 2;
+    y = height / 2;
+    k = 1;
+    centered = null;
+  }
+
+  g.selectAll("path")
+      .classed("active", centered && function(d) { return d === centered; });
+
+  g.transition()
+      .duration(750)
+      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      .style("stroke-width", 1.5 / k + "px");
+}
+
 
 function createMedianAge(){
     var formats = {
@@ -174,7 +209,7 @@ function createMedianAge(){
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2]);
+        .translate([width / 2, height / 2.5]);
 
     var path = d3.geoPath()
         .projection(projection);
@@ -312,7 +347,7 @@ function createMedianHouseholdIncome(){
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2]);
+        .translate([width / 2, height / 2.5]);
 
     var path = d3.geoPath()
         .projection(projection);
@@ -450,7 +485,7 @@ function createPerCapitaIncome(){
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2]);
+        .translate([width / 2, height / 2.5]);
 
     var path = d3.geoPath()
         .projection(projection);
@@ -1682,3 +1717,9 @@ window.onmousemove = function (e) {
         tooltips[i].style.left = x;
     }
 };
+
+//map zoom - add active class
+
+ 
+
+
