@@ -612,7 +612,7 @@ function makeTransportationChart(error, data){
         .attr('class', 'label');                   // NEW
 
     tooltip.append('div')                        // NEW
-        .attr('class', 'count');                   // NEW
+        .attr('class', 'count');                  // NEW
 
     tooltip.append('div')                        // NEW
         .attr('class', 'percent');
@@ -1658,6 +1658,8 @@ function placeBirthPovertyObject(data){
     return objContainer;
 }
 
+//fixing affix behavior
+
 $(document).ready(function () {
     $(window).resize(function () {
         $('#leftNav').width($('#leftNavParent').width());
@@ -1668,3 +1670,15 @@ $(document).ready(function () {
     $('#leftNav').width($('#leftNavParent').width());
 });
 
+// tooltip appear on mouse cursor
+
+var tooltips = document.querySelectorAll('.tooltip');
+
+window.onmousemove = function (e) {
+    var x = (e.clientX - 250) + 'px',
+        y = (e.clientY + 50) + 'px';
+    for (var i = 0; i < tooltips.length; i++) {
+        tooltips[i].style.top = y;
+        tooltips[i].style.left = x;
+    }
+};

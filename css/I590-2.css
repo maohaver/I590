@@ -96,11 +96,11 @@ rect.disabled {                              /* NEW */
     color: #333!important;
     display: none;
     font-size: 12px;
-    left: 50px;
+    left: 60px;
     padding: 10px;
-    position: absolute;
+    position: auto;
     text-align: center;
-    top: 95px;
+    
     width: 150px;
     z-index: 10;
     opacity: 1;
