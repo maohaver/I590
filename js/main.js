@@ -33,7 +33,7 @@ function createPopulationByCounty(){
     var rateById = d3.map();
 
     var projection = d3.geoAlbersUsa()
-        .scale(width)
+        .scale([width + 150])
         .translate([width / 2, height / 2]);
 
     var path = d3.geoPath()
@@ -173,7 +173,7 @@ function createMedianAge(){
     var rateById = d3.map();
 
     var projection = d3.geoAlbersUsa()
-        .scale(width)
+        .scale([width + 150])
         .translate([width / 2, height / 2]);
 
     var path = d3.geoPath()
@@ -311,7 +311,7 @@ function createMedianHouseholdIncome(){
     var rateById = d3.map();
 
     var projection = d3.geoAlbersUsa()
-        .scale(width)
+        .scale([width + 150])
         .translate([width / 2, height / 2]);
 
     var path = d3.geoPath()
@@ -449,7 +449,7 @@ function createPerCapitaIncome(){
     var rateById = d3.map();
 
     var projection = d3.geoAlbersUsa()
-        .scale(width)
+        .scale([width + 150])
         .translate([width / 2, height / 2]);
 
     var path = d3.geoPath()
@@ -704,7 +704,7 @@ function createTransportationObject(data){
     var objContainer = [];
 
     var obj1 = { "label": "Car, Truck, or Van", "count": data[1][1], "enabled": true };
-    var obj2 = { "label": "Public Transportation (Excluding Taxicab)", "count": data[1][2], "enabled": true };
+    var obj2 = { "label": "Public Transportation", "count": data[1][2], "enabled": true };
     var obj3 = { "label": "Taxicab", "count": data[1][3], "enabled": true };
     var obj4 = { "label": "Motorcycle", "count": data[1][4], "enabled": true };
     var obj5 = { "label": "Bicycle", "count": data[1][5], "enabled": true };
@@ -863,7 +863,7 @@ function createmakeEducationalAttainmentChartObject(data){
     var objContainer = [];
 
     var obj1 = { "label": "Less Than High School Graduate", "count": data[1][1], "enabled": true };
-    var obj2 = { "label": "High School Graduate (includes Equivalency)", "count": data[1][2], "enabled": true };
+    var obj2 = { "label": "High School Graduate", "count": data[1][2], "enabled": true };
     var obj3 = { "label": "Some College or Associate's Degree", "count": data[1][3], "enabled": true };
     var obj4 = { "label": "Bachelor's Degree", "count": data[1][4], "enabled": true };
     var obj5 = { "label": "Graduate or Professional Degree", "count": data[1][5], "enabled": true };
@@ -1015,12 +1015,12 @@ function getRaceChart(error, data){
 function getRaceObject(data){
     var objContainer = [];
 
-    var obj1 = { "label": "White Alone", "count": data[1][1], "enabled": true };
-    var obj2 = { "label": "Black or African American Alone", "count": data[1][2], "enabled": true };
-    var obj3 = { "label": "American Indian and Alaska Native Alone", "count": data[1][3], "enabled": true };
+    var obj1 = { "label": "White", "count": data[1][1], "enabled": true };
+    var obj2 = { "label": "Black or African American", "count": data[1][2], "enabled": true };
+    var obj3 = { "label": "American Indian and Alaska Native", "count": data[1][3], "enabled": true };
     var obj4 = { "label": "Asian Alone", "count": data[1][4], "enabled": true };
-    var obj5 = { "label": "Native Hawaiian and Other Pacific Islander Alone", "count": data[1][5], "enabled": true };
-    var obj6 = { "label": "Some Other Race Alone", "count": data[1][6], "enabled": true };
+    var obj5 = { "label": "Native Hawaiian / Pacific Islander", "count": data[1][5], "enabled": true };
+    var obj6 = { "label": "Some Other Race", "count": data[1][6], "enabled": true };
     var obj7 = { "label": "Two or More Races", "count": data[1][7], "enabled": true };
 
     objContainer.push(obj1);
@@ -1174,8 +1174,8 @@ function livingArrangmentObject(data){
     var objContainer = [];
 
     var obj1 = { "label": "Lives Alone", "count": data[1][1], "enabled": true };
-    var obj2 = { "label": "Householder Living With Spouse or Spouse of Householder", "count": data[1][2], "enabled": true };
-    var obj3 = { "label": "Householder Living With Unmarried Partner or Unmarried Partner of Householder", "count": data[1][3], "enabled": true };
+    var obj2 = { "label": "Married Householder", "count": data[1][2], "enabled": true };
+    var obj3 = { "label": "Unmarried Householder / Partner", "count": data[1][3], "enabled": true };
     var obj4 = { "label": "Child of Householder", "count": data[1][4], "enabled": true };
     var obj5 = { "label": "Other Relatives", "count": data[1][5], "enabled": true };
     var obj6 = { "label": "Other Nonrelatives", "count": data[1][6], "enabled": true };
@@ -1329,7 +1329,7 @@ function birthByNationalityObject(data){
     var objContainer = [];
 
     var obj1 = { "label": "Born in State of Residence", "count": data[1][1], "enabled": true };
-    var obj2 = { "label": "Born in Other State in the United States", "count": data[1][2], "enabled": true };
+    var obj2 = { "label": "Born in Other State in the U.S.", "count": data[1][2], "enabled": true };
     var obj3 = { "label": "Born Outside the United States", "count": data[1][3], "enabled": true };
 
     objContainer.push(obj1);
@@ -1645,9 +1645,9 @@ function placeBirthPovertyChart(error, data){
 function placeBirthPovertyObject(data){
     var objContainer = [];
 
-    var obj1 = { "label": "Below 100 Percent of the Poverty Level", "count": data[1][1], "enabled": true };
-    var obj2 = { "label": "100 to 149 Percent of the Poverty Level", "count": data[1][2], "enabled": true };
-    var obj3 = { "label": "At or Above 150 Percent of the Poverty Level", "count": data[1][3], "enabled": true };
+    var obj1 = { "label": "Below the Poverty Level", "count": data[1][1], "enabled": true };
+    var obj2 = { "label": "1 to 1.49x the Poverty Level", "count": data[1][2], "enabled": true };
+    var obj3 = { "label": "At or Above 1.5x the Poverty Level", "count": data[1][3], "enabled": true };
 
 
     objContainer.push(obj1);
