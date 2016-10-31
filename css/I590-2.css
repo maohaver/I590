@@ -8,15 +8,15 @@ body {
 
 .counties {
   fill: none;
+  stroke: gray;
 }
 
 .states {
   fill: none;
-  stroke: #fff;
-  stroke-linejoin: round;
+  stroke: #000;
 }
 
-/*orange only colors */
+/*orange only colors 
 
 .b0-9 { fill:#fff5eb; }
 .b1-9 { fill:#fee6ce; }
@@ -29,7 +29,7 @@ body {
 .b8-9 { fill:#7f2704; }
 
 /*orange/yellow/brown colors 
-*/
+
 
 .q0-9 { fill:#ffffe5; }
 .q1-9 { fill:#fff7bc; }
@@ -40,6 +40,18 @@ body {
 .q6-9 { fill:#cc4c02; }
 .q7-9 { fill:#993404; }
 .q8-9 { fill:#662506; }
+
+.g0-9 { fill:#d9f0a3; }
+.g1-9 { fill:#addd8e; }
+.g2-9 { fill:#78c679; }
+.g3-9 { fill:#41ab5d; }
+.g4-9 { fill:#238443; }
+.g5-9 { fill:#006837; }
+.g6-9 { fill:#004529; }
+.g7-9 { fill:#4C6F57; }
+.g8-9 { fill:#3D5043; }
+
+*/
 
 /* legend CSS */
 
@@ -54,4 +66,76 @@ li.key {
     width: 10%;
     padding-left: 0;
     padding-right: 0;
+}
+
+.legend {
+    font-size: 10px;
+}
+rect {
+    cursor: pointer;                           /* NEW */
+    stroke-width: 2;
+}
+rect.disabled {                              /* NEW */
+    fill: transparent !important;              /* NEW */
+}
+
+#chart {
+    height: 200px;
+    position: relative;
+    width: 600px;
+}
+
+.tooltip {
+    background: #eee;
+    box-shadow: 0 0 5px #999999;
+    color: #333!important;
+    display: none;
+    font-size: 12px;
+    left: 50px;
+    padding: 10px;
+    position: absolute;
+    text-align: center;
+    top: 95px;
+    width: 150px;
+    z-index: 10;
+    opacity: 1;
+    white-space: normal!important;
+}
+
+.tooltip .label {
+    color: #333!important;
+    font-size: 12px!important;
+    white-space: normal!important;
+}
+
+.btn.active, .btn:active {
+    background-color: #9f1a0b;
+}
+
+#panelSideBar {
+    padding-top: 19.5px;
+}
+
+#choroplethTopBar {
+    padding-top: 19.5px;
+}
+
+#choroplethTopBar .btn {
+        font-size: 12px;
+    } 
+
+@media screen and (max-width: 767px) {
+    #choroplethTopBar .btn {
+        font-size: 8px;
+    } 
+}
+@media screen and (max-width: 991px) {
+    #choroplethTopBar .btn {
+        font-size: 11px;
+    } 
+}
+@media screen and (max-width: 1190px) {
+    #choroplethTopBar .btn {
+        font-size: 9.5px;
+    } 
 }
