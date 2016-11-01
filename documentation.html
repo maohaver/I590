@@ -39,7 +39,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">I590 Project 2</a>
+            <a class="navbar-brand" href="index.html">I590 Project 2</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -123,9 +123,21 @@
               </div>
               <div class="panel-body">
                 
-                <p>As our visualization is designed to facilitate data exploration, the insights gained from it are often open to interpretation and analysis by individual users. A quick scan through the four choropleths reveals that&mdash;as expected&mdash;Median Household Income is closely related to Per Capita Income.</p>
+                <p>As our visualization is designed to facilitate data exploration, the insights gained from it are often open to interpretation and analysis by individual users. Of course, some findings are objective. A quick scan through the four choropleths reveals that&mdash;as expected&mdash;Median Household Income is closely related to Per Capita Income.</p>
 
                 <p>Interestingly, Median Age appears to follow a similar distribution across the U.S. to these two seemingly unrelated variables. Total Population bucks the trend, with places like Los Angeles County, California and Cook County, Illinois (Chicago) boasting an incredibly high population but a relatively low Median Household Income and Per Capita Income.</p>
+
+                <hr>
+
+                <p>We did not get to delve deeply into the small multiples design due to the time it took to develop the choropleth and pie charts. Unfortunately, this makes it more difficult to ascertain national trends for related variables.</p>
+
+                <p>For example, with the visualization's current design, a user could click county by county and see what percentage of people use motorcycles vs. bicycles for transportation. But if users were to see this data displayed in a small multiples arrangement of choropleths, each depicting one mode of transportation, trends could be rapidly discerned.</p>
+
+                <hr>
+
+                <p>Despite the lack of small multiples, the pie charts can be used to reveal trends at the county and, to some extent, state levels. Some were obvious: as Median Household Income/Per Capita Income increases, so do the percentages of people above the poverty level. The average level of educational attainment is also highly correlated to these increases, with more people holding graduate or professional degrees in those counties with the highest median incomes.</p>
+
+                <p>Some variables seem highly independent of all others. For example, Median Age does not appear to correlate with any of the pie chart variables, even ones that are ostensibly related&mdash;like Educational Attainment or Living Arrangement.
 
               </div>
             </div>
@@ -176,7 +188,7 @@
 
                                 <figure class="figure">
                                     <img class="img-responsive img-rounded" src="img/charttypes.jpg" alt="Figuring out chart types from data">
-                                  <figcaption class="figure-caption pull-right">Categorizing data into pie charts, info boxes, etc.</figcaption>
+                                  <figcaption class="figure-caption pull-right">Categorizing data into charts types.</figcaption>
                                 </figure>
 
 
@@ -215,7 +227,7 @@
 
                                 <figure class="figure">
                                    <img class="img-responsive img-rounded" src="img/multimapsketch.png" alt="Testing the design in browser some more">
-                                  <figcaption class="figure-caption pull-right">This is as far as we got with small multiples.</figcaption>
+                                  <figcaption class="figure-caption pull-right">An attempt at small multiples.</figcaption>
                                 </figure>
 
                              
@@ -280,7 +292,7 @@
 
                                 <figure class="figure">
                                        <a href="https://bl.ocks.org/mbostock/2206590" target="_blank"><img class="img-responsive img-fluid img-rounded" src="img/clicktotransform.png" alt="Click to transform map interaction example"></a>
-                                      <figcaption class="figure-caption">Click-to-zoom helps users interact with our design.</figcaption>
+                                      <figcaption class="figure-caption">Click-to-zoom navigation frees up space.</figcaption>
                                 </figure>
 
                             
@@ -292,7 +304,7 @@
 
                                 <figure class="figure">
                                        <a href="http://zeroviscosity.com/d3-js-step-by-step/step-3-adding-a-legend" target="_blank"><img class="img-responsive img-rounded" src="img/piechartexample.png" alt="Pie chart example"></a>
-                                      <figcaption class="figure-caption pull-right">This guide helped us set up interactive pie charts.</figcaption>
+                                      <figcaption class="figure-caption pull-right">A guide to interactive pie charts.</figcaption>
                                 </figure>
 
                               
@@ -328,7 +340,7 @@
 
                                 <figure class="figure">
                                        <img class="img-responsive img-rounded" src="img/labeloverlap.png" alt="Label overlap problem">
-                                      <figcaption class="figure-caption">We ended up truncating some labels to prevent overlap.</figcaption>
+                                      <figcaption class="figure-caption">We truncated some labels to prevent overlap.</figcaption>
                                 </figure>
 
                             
@@ -340,7 +352,7 @@
 
                                 <figure class="figure">
                                         <img class="img-responsive img-rounded" src="img/nearfinish.png" alt="Getting close to done on the design">
-                                      <figcaption class="figure-caption pull-right">Nearly finished, we just need some CSS tweaks.</figcaption>
+                                      <figcaption class="figure-caption pull-right">We just need some CSS tweaks.</figcaption>
                                 </figure>
 
                              
@@ -363,6 +375,12 @@
 
     </div>
     <!-- /.row -->
+
+    <footer class="footer">
+      <div class="well well-sm">
+        <span class="text-muted">Designed and developed by Matthew O'Haver, Lisha Chen, and Venkata Chandra Sekhar Sastry Chilkuri. Data taken from <a href="https://www.socialexplorer.com/data/ACS2015/metadata/?ds=ACS15" target="_blank">ACS 2015 Survey.</a></span>  <span class="text-muted pull-right"><span class="glyphicon glyphicon-copyright-mark"></span> 2016</span>
+      </div>
+    </footer>
 
 </div>
 <!-- /.container -->
