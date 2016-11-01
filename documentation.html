@@ -1,0 +1,387 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>I590 - Project 2</title>
+
+    <!-- Bootswatch CSS via CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N" crossorigin="anonymous">
+
+     <!-- Color Brewer CSS -->
+    <link href="css/colorbrewer.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/I590-2.css" rel="stylesheet">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">I590 Project 2</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="multiview.html">Multi-Map View</a>
+                </li>
+                <li class="active"><a href="#">Documentation</a>
+                </li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+
+    <div class="row">
+
+
+        <div id="leftNavParent2" class="col-md-5">
+
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Design Process</h3>
+              </div>
+              <div class="panel-body">
+
+                <p>Our design began by interpreting the large dataset and sketching some potential choropleth layouts. It was quickly apparent that an interactive choropleth requires a great deal of screen space on its own, so combining a US map with additional charts would require some finesse.</p>
+
+                <p>We split up for two weeks to work on individual designs before coming together to integrate our best features. While we each had variations in our sketches, we all shared similar qualities: a minimalist and easily learnable interface that encourages data exploration through ease of interactivity.</p>
+
+                <p>In its simplest form, our initial design was a chropleth of the U.S. which, when a county was clicked, would be surrounded by relevant information organized in various chart types. Conceptually, these charts might further be filtered via some selection by the user.</p>
+
+                <hr>
+
+                <p>To facilitate this design, it was important to categorize the data into ways it could best be represented. We decided on four simple yet informative choropleths (as their variables held one result per county): Total Population, Median Age, Median Household Income, and Per Capita Income.</p>
+
+                <p>We identified many variables which could be represented as pie charts, as seen in the photo to the right. Age distribution could be shown in a bar chart, and the four choropleth variables could each be represented as a simple info box displaying a number and label.</p>
+
+
+              </div>
+            </div>
+
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Design Rationale</h3>
+              </div>
+              <div class="panel-body">
+                
+                <p>There were many problems to overcome once we started laying out our original design in HTML. We realized that although flanking the choropleth with two columns of data was aesthetically pleasing, there would not be enough room to effectively display so many charts with legends alongside a usable map.</p>
+
+                <p>At a design meeting, we decided to change to a split screen design with a major focus on the choropleth as a key interactive element. With a map on the left side and panels on the right, user's should be inclined to interact with the map first and recognize that the charts are generated based on their interactions with the map.</p>
+
+                <hr>
+
+                <p>Our first iteration of the website was basically a choropleth next to a column of pie charts. While this looked visually pleasing already, we realized we would need to rethink the interaction with the choropleth&mdash;how should we highlight the county once a user clicks on it, and how can we make state trends and county data more visible on a state-by-state level?</p>
+
+                <p>The answer was a D3.js click-to-transform solution, provided by Mike Bostock. Click the image to the right to view the source code. This zooms and centers the map on the county the user has clicked on, and zooms back out when the same county is clicked again.</p>
+
+                <hr>
+
+                <p>While working on the CSS for the pie charts, we stumbled across a guide for making D3.js pie charts. This six-step guide suggested an innovative feature&mdash;an interactive legend that redraws the pie chart based on deselected variables. This feature allows users to explore data they otherwise couldn't, such as what percentage of minorities are "Black or African American" in Marion County.</p>
+
+                <p>Simply click the county, then click the "White" box on the legend to remove it from the chart. Following this example, we see that while the percentage of "Black or African Americans" in Marion County is 27.2%, they account for 75.2% of minorities in the county.</p>
+
+
+
+
+
+              </div>
+            </div>
+
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Data Insights</h3>
+              </div>
+              <div class="panel-body">
+                
+                <p>As our visualization is designed to facilitate data exploration, the insights gained from it are often open to interpretation and analysis by individual users. A quick scan through the four choropleths reveals that&mdash;as expected&mdash;Median Household Income is closely related to Per Capita Income.</p>
+
+                <p>Interestingly, Median Age appears to follow a similar distribution across the U.S. to these two seemingly unrelated variables. Total Population bucks the trend, with places like Los Angeles County, California and Cook County, Illinois (Chicago) boasting an incredibly high population but a relatively low Median Household Income and Per Capita Income.</p>
+
+              </div>
+            </div>
+
+
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Video Demonstration</h3>
+              </div>
+              <div class="panel-body">
+                
+
+                                    <!-- 16:9 aspect ratio -->
+                    <div class="embed-responsive embed-responsive-16by9">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/0TdXA4gHtRU"></iframe>
+                    </div>
+
+
+              </div>
+            </div>
+
+
+        </div>
+        <!-- /.col-md-7 -->
+
+        <div id="panelSideBar2" class="col-xs-12 col-md-7">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 id="panelTitle1" class="panel-title">Sketching Maps and Interpreting Datasets</h4>
+                </div>
+                <div id="panelBody1" class="panel-body">
+                    
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                                 <figure class="figure">
+                                   <img class="img-responsive img-rounded" src="img/firstsketch.jpg" alt="First sketch of map">
+                                  <figcaption class="figure-caption">First sketch of the map.</figcaption>
+                                </figure>
+
+                            
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                                <figure class="figure">
+                                    <img class="img-responsive img-rounded" src="img/charttypes.jpg" alt="Figuring out chart types from data">
+                                  <figcaption class="figure-caption pull-right">Categorizing data into pie charts, info boxes, etc.</figcaption>
+                                </figure>
+
+
+                            
+
+                        </div>
+
+                    </div><!-- ./row -->
+
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 id="panelTitle2" class="panel-title">Choropleth and Small Multiples Prototyping</h4>
+                </div>
+                <div id="panelBody2" class="panel-body">
+                    
+
+                     <div class="row">
+
+                        <div class="col-md-6">
+
+                                <figure class="figure">
+                                   <img class="img-responsive img-fluid img-rounded" src="img/firstprototype.png" alt="Testing the design in browser">
+                                  <figcaption class="figure-caption">Testing the design in browser.</figcaption>
+                                </figure>
+
+                          
+
+                        </div>
+
+                        <div class="col-md-6">
+
+
+                                <figure class="figure">
+                                   <img class="img-responsive img-rounded" src="img/multimapsketch.png" alt="Testing the design in browser some more">
+                                  <figcaption class="figure-caption pull-right">This is as far as we got with small multiples.</figcaption>
+                                </figure>
+
+                             
+
+                        </div>
+
+                    </div><!-- ./row -->
+
+
+                </div>
+            </div>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 id="panelTitle3" class="panel-title">Beginning to Code</h4>
+                </div>
+                <div id="panelBody3" class="panel-body">
+                   
+
+                  <div class="row">
+
+                        <div class="col-md-6">
+
+                                    <figure class="figure">
+                                       <img class="img-responsive img-rounded" src="img/meeting.jpg" alt="Meeting to dicuss design options">
+                                      <figcaption class="figure-caption">We met to recalibrate the design.</figcaption>
+                                    </figure>
+
+
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                                  <figure class="figure">
+                                       <img class="img-responsive img-rounded" src="img/firstJS.png" alt="Starting to code">
+                                      <figcaption class="figure-caption pull-right">Starting to code the choropleths.</figcaption>
+                                    </figure>
+
+
+                             
+                        </div>
+
+                    </div><!-- ./row -->
+
+
+
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 id="panelTitle4" class="panel-title">Multimap Prototype</h4>
+                </div>
+                <div id="panelBody4" class="panel-body">
+                    
+
+                     <div class="row">
+
+                        <div class="col-md-6">
+
+                                <figure class="figure">
+                                       <a href="https://bl.ocks.org/mbostock/2206590" target="_blank"><img class="img-responsive img-fluid img-rounded" src="img/clicktotransform.png" alt="Click to transform map interaction example"></a>
+                                      <figcaption class="figure-caption">Click-to-zoom helps users interact with our design.</figcaption>
+                                </figure>
+
+                            
+
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                                <figure class="figure">
+                                       <a href="http://zeroviscosity.com/d3-js-step-by-step/step-3-adding-a-legend" target="_blank"><img class="img-responsive img-rounded" src="img/piechartexample.png" alt="Pie chart example"></a>
+                                      <figcaption class="figure-caption pull-right">This guide helped us set up interactive pie charts.</figcaption>
+                                </figure>
+
+                              
+
+                        </div>
+
+                    </div><!-- ./row -->
+
+                  
+
+                </div>
+            </div>
+
+
+            
+                    
+
+                    
+
+
+             
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 id="panelTitle7" class="panel-title">Label Overlap</h4>
+                </div>
+                <div id="panelBody7" class="panel-body">
+                    
+
+                      <div class="row">
+
+                        <div class="col-md-6">
+
+                                <figure class="figure">
+                                       <img class="img-responsive img-rounded" src="img/labeloverlap.png" alt="Label overlap problem">
+                                      <figcaption class="figure-caption">We ended up truncating some labels to prevent overlap.</figcaption>
+                                </figure>
+
+                            
+
+
+                        </div>
+
+                        <div class="col-md-6">
+
+                                <figure class="figure">
+                                        <img class="img-responsive img-rounded" src="img/nearfinish.png" alt="Getting close to done on the design">
+                                      <figcaption class="figure-caption pull-right">Nearly finished, we just need some CSS tweaks.</figcaption>
+                                </figure>
+
+                             
+
+                        </div>
+
+                    </div><!-- ./row -->
+  
+
+
+                </div>
+            </div>
+
+            
+
+        </div>
+        <!-- /.col-md-2 -->
+
+
+
+    </div>
+    <!-- /.row -->
+
+</div>
+<!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="//d3js.org/d3.v4.min.js"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+</script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/colorbrewer.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+
+</html>

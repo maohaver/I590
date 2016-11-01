@@ -12,9 +12,8 @@ body {
 }
 
 .counties .active {
-  fill: orange;
   stroke: #000;
-  stroke-width: 3;
+  stroke-width: 1.5;
 }
 
 .states {
@@ -127,6 +126,14 @@ rect.disabled {                              /* NEW */
 }
 
 #panelSideBar {
+    padding-top: 19.5px;
+}
+
+#panelSideBar2 {
+    padding-top: 19.5px;
+}
+
+#leftNavParent2 {
     padding-top: 19.5px;
 }
 
