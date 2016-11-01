@@ -1,12 +1,20 @@
 //testing code
 
 var apiKey = "897b700722da6ea1a25b679de7970f3ad6d81ef9";
+var curCounty = '18097';
+var g = null;
+var centered;
 
 $(function(){
     $('#totalPopulationByCounty').off('click').on('click', createPopulationByCounty);
     $('#medianAge').off('click').on('click', createMedianAge);
     $('#medianHouseholdIncome').off('click').on('click', createMedianHouseholdIncome);
     $('#perCapitaIncome').off('click').on('click', createPerCapitaIncome);
+
+    $('body').on('click', 'path', function(){
+        $('path').removeClass('active');
+        $(this).addClass('active');
+    });
 
     createPopulationByCounty();
 });
@@ -37,8 +45,6 @@ function createPopulationByCounty(){
         .on("click", clicked);
 
     var rateById = d3.map();
-
-    var centered;
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
@@ -133,15 +139,17 @@ function createPopulationByCounty(){
             .domain([getMin(), getMax()])
             .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
 
-        svg.append("g")
-            .attr("class", "counties")
+        g = svg.append("g");
+
+        g.attr("class", "counties")
             .selectAll("path")
             .data(topojson.feature(us, us.objects.counties).features)
             .enter().append("path")
-            .attr("class", function(d) { return quantize(rateById.get(d.id)); })
+            .attr("class", function(d) { if((d.id) == curCounty) { return quantize(rateById.get(d.id)) + " active"; } else { return quantize(rateById.get(d.id)); } })
             .attr("d", path)
             .on("click", clicked)
             .on('mousedown.log', function (d) {
+                curCounty = d.id;
                 getTransportationData(d.id);
                 getEducationalAttainment(d.id);
                 getRace(d.id);
@@ -149,6 +157,16 @@ function createPopulationByCounty(){
                 birthByNationality(d.id);
                 populationByPoverty(d.id);
                 placeBirthPoverty(d.id);
+            })
+            .enter()
+            .call(function(d){
+                getTransportationData(curCounty);
+                getEducationalAttainment(curCounty);
+                getRace(curCounty);
+                livingArrangment(curCounty);
+                birthByNationality(curCounty);
+                populationByPoverty(curCounty);
+                placeBirthPoverty(curCounty);
             });
 
         svg.append("path")
@@ -158,32 +176,41 @@ function createPopulationByCounty(){
 
     }
 
+    function clicked(d) {
 
-}
+        var x, y, k;
 
-function clicked(d) {
-  var x, y, k;
+        if (d && centered !== d) {
+            var centroid = path.centroid(d);
+            x = centroid[0];
+            y = centroid[1];
+            k = 4;
+            centered = d;
+        } else {
+            x = width / 2;
+            y = height / 2;
+            k = 1;
+            centered = null;
+        }
 
-  if (d && centered !== d) {
-    var centroid = path.centroid(d);
-    x = centroid[0];
-    y = centroid[1];
-    k = 4;
-    centered = d;
-  } else {
-    x = width / 2;
-    y = height / 2;
-    k = 1;
-    centered = null;
-  }
+        g.selectAll("path")
+            .classed("active", centered && function(d) { return d === centered; });
 
-  g.selectAll("path")
-      .classed("active", centered && function(d) { return d === centered; });
+        g.transition()
+            .duration(750)
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+            .style("stroke-width", 1.5 / k + "px");
 
-  g.transition()
-      .duration(750)
-      .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
-      .style("stroke-width", 1.5 / k + "px");
+        if(centered === null) {
+            setTimeout(function () {
+                $('.states').removeClass('hide');
+            }, 700);
+        } else {
+            $('.states').addClass('hide');
+        }
+
+    }
+
 }
 
 
@@ -300,14 +327,17 @@ function createMedianAge(){
             .domain([getMin(), getMax()])
             .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
 
-        svg.append("g")
-            .attr("class", "counties")
+        g = svg.append("g");
+
+        g.attr("class", "counties")
             .selectAll("path")
             .data(topojson.feature(us, us.objects.counties).features)
             .enter().append("path")
-            .attr("class", function(d) { return quantize(rateById.get(d.id)); })
+            .attr("class", function(d) { if((d.id) == curCounty) { return quantize(rateById.get(d.id)) + " active"; } else { return quantize(rateById.get(d.id)); } })
             .attr("d", path)
+            .on("click", clicked)
             .on('mousedown.log', function (d) {
+                curCounty = d.id;
                 getTransportationData(d.id);
                 getEducationalAttainment(d.id);
                 getRace(d.id);
@@ -315,12 +345,57 @@ function createMedianAge(){
                 birthByNationality(d.id);
                 populationByPoverty(d.id);
                 placeBirthPoverty(d.id);
+            })
+            .enter()
+            .call(function(d){
+                getTransportationData(curCounty);
+                getEducationalAttainment(curCounty);
+                getRace(curCounty);
+                livingArrangment(curCounty);
+                birthByNationality(curCounty);
+                populationByPoverty(curCounty);
+                placeBirthPoverty(curCounty);
             });
 
         svg.append("path")
             .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
             .attr("class", "states")
             .attr("d", path);
+
+    }
+
+    function clicked(d) {
+
+        var x, y, k;
+
+        if (d && centered !== d) {
+            var centroid = path.centroid(d);
+            x = centroid[0];
+            y = centroid[1];
+            k = 4;
+            centered = d;
+        } else {
+            x = width / 2;
+            y = height / 2;
+            k = 1;
+            centered = null;
+        }
+
+        g.selectAll("path")
+            .classed("active", centered && function(d) { return d === centered; });
+
+        g.transition()
+            .duration(750)
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+            .style("stroke-width", 1.5 / k + "px");
+
+        if(centered === null) {
+            setTimeout(function () {
+                $('.states').removeClass('hide');
+            }, 700);
+        } else {
+            $('.states').addClass('hide');
+        }
 
     }
 }
@@ -438,14 +513,17 @@ function createMedianHouseholdIncome(){
             .domain([getMin(), getMax()])
             .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
 
-        svg.append("g")
-            .attr("class", "counties")
+        g = svg.append("g");
+
+        g.attr("class", "counties")
             .selectAll("path")
             .data(topojson.feature(us, us.objects.counties).features)
             .enter().append("path")
-            .attr("class", function(d) { return quantize(rateById.get(d.id)); })
+            .attr("class", function(d) { if((d.id) == curCounty) { return quantize(rateById.get(d.id)) + " active"; } else { return quantize(rateById.get(d.id)); } })
             .attr("d", path)
+            .on("click", clicked)
             .on('mousedown.log', function (d) {
+                curCounty = d.id;
                 getTransportationData(d.id);
                 getEducationalAttainment(d.id);
                 getRace(d.id);
@@ -453,12 +531,57 @@ function createMedianHouseholdIncome(){
                 birthByNationality(d.id);
                 populationByPoverty(d.id);
                 placeBirthPoverty(d.id);
+            })
+            .enter()
+            .call(function(d){
+                getTransportationData(curCounty);
+                getEducationalAttainment(curCounty);
+                getRace(curCounty);
+                livingArrangment(curCounty);
+                birthByNationality(curCounty);
+                populationByPoverty(curCounty);
+                placeBirthPoverty(curCounty);
             });
 
         svg.append("path")
             .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
             .attr("class", "states")
             .attr("d", path);
+
+    }
+
+    function clicked(d) {
+
+        var x, y, k;
+
+        if (d && centered !== d) {
+            var centroid = path.centroid(d);
+            x = centroid[0];
+            y = centroid[1];
+            k = 4;
+            centered = d;
+        } else {
+            x = width / 2;
+            y = height / 2;
+            k = 1;
+            centered = null;
+        }
+
+        g.selectAll("path")
+            .classed("active", centered && function(d) { return d === centered; });
+
+        g.transition()
+            .duration(750)
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+            .style("stroke-width", 1.5 / k + "px");
+
+        if(centered === null) {
+            setTimeout(function () {
+                $('.states').removeClass('hide');
+            }, 700);
+        } else {
+            $('.states').addClass('hide');
+        }
 
     }
 }
@@ -576,14 +699,17 @@ function createPerCapitaIncome(){
             .domain([getMin(), getMax()])
             .range(d3.range(9).map(function(i) { return "q" + i + "-9"; }));
 
-        svg.append("g")
-            .attr("class", "counties")
+        g = svg.append("g");
+
+        g.attr("class", "counties")
             .selectAll("path")
             .data(topojson.feature(us, us.objects.counties).features)
             .enter().append("path")
-            .attr("class", function(d) { return quantize(rateById.get(d.id)); })
+            .attr("class", function(d) { if((d.id) == curCounty) { return quantize(rateById.get(d.id)) + " active"; } else { return quantize(rateById.get(d.id)); } })
             .attr("d", path)
+            .on("click", clicked)
             .on('mousedown.log', function (d) {
+                curCounty = d.id;
                 getTransportationData(d.id);
                 getEducationalAttainment(d.id);
                 getRace(d.id);
@@ -591,12 +717,57 @@ function createPerCapitaIncome(){
                 birthByNationality(d.id);
                 populationByPoverty(d.id);
                 placeBirthPoverty(d.id);
+            })
+            .enter()
+            .call(function(d){
+                getTransportationData(curCounty);
+                getEducationalAttainment(curCounty);
+                getRace(curCounty);
+                livingArrangment(curCounty);
+                birthByNationality(curCounty);
+                populationByPoverty(curCounty);
+                placeBirthPoverty(curCounty);
             });
 
         svg.append("path")
             .datum(topojson.mesh(us, us.objects.states, function(a, b) { return a !== b; }))
             .attr("class", "states")
             .attr("d", path);
+
+    }
+
+    function clicked(d) {
+
+        var x, y, k;
+
+        if (d && centered !== d) {
+            var centroid = path.centroid(d);
+            x = centroid[0];
+            y = centroid[1];
+            k = 4;
+            centered = d;
+        } else {
+            x = width / 2;
+            y = height / 2;
+            k = 1;
+            centered = null;
+        }
+
+        g.selectAll("path")
+            .classed("active", centered && function(d) { return d === centered; });
+
+        g.transition()
+            .duration(750)
+            .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+            .style("stroke-width", 1.5 / k + "px");
+
+        if(centered === null) {
+            setTimeout(function () {
+                $('.states').removeClass('hide');
+            }, 700);
+        } else {
+            $('.states').addClass('hide');
+        }
 
     }
 }
