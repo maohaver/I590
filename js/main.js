@@ -48,7 +48,7 @@ function createPopulationByCounty(){
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2.5]);
+        .translate([width / 2, height / 2.25]);
 
     var path = d3.geoPath()
         .projection(projection);
@@ -236,7 +236,7 @@ function createMedianAge(){
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2.5]);
+        .translate([width / 2, height / 2.25]);
 
     var path = d3.geoPath()
         .projection(projection);
@@ -422,7 +422,7 @@ function createMedianHouseholdIncome(){
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2.5]);
+        .translate([width / 2, height / 2.25]);
 
     var path = d3.geoPath()
         .projection(projection);
@@ -608,7 +608,7 @@ function createPerCapitaIncome(){
 
     var projection = d3.geoAlbersUsa()
         .scale([width + 150])
-        .translate([width / 2, height / 2.5]);
+        .translate([width / 2, height / 2.25]);
 
     var path = d3.geoPath()
         .projection(projection);

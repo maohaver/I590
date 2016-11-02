@@ -31,6 +31,17 @@ body {
   pointer-events: all;
 }
 
+#UIalert {
+    z-index: 999;
+    position: relative;
+    top: -300px;
+}
+
+#UIalert img {
+    max-width: 150px;
+    max-height: 100px;
+}
+
 
 .b0-9 { fill:#fff5eb; }
 .b1-9 { fill:#fee6ce; }
@@ -154,6 +165,11 @@ rect.disabled {                              /* NEW */
     #choroplethTopBar .btn {
         font-size: 11px;
     } 
+    #UIalert {
+    z-index: 999;
+    position: relative;
+    top: -400px;
+}
 }
 @media screen and (max-width: 1190px) {
     #choroplethTopBar .btn {
